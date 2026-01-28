@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_job_order_form" model="ir.ui.view">
+        <field name="name">job.order.form</field>
+        <field name="model">job.order</field>
+        <field name="arch" type="xml">
+            <form string="Job Order">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="invoice_id" readonly="1"/>
+                        <field name="partner_id"/>
+                        <field name="date"/>
+                    </group>
+                    <notebook>
+                        <page string="Lines">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="height"/>
+                                    <field name="width"/>
+                                    <field name="unit"/>
+                                    <field name="number_items"/>
+                                    <field name="total_sq_ft"/>
+                                    <field name="amount_per_sq_ft"/>
+                                    <field name="total_amount_payable"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_job_order_tree" model="ir.ui.view">
+        <field name="name">job.order.tree</field>
+        <field name="model">job.order</field>
+        <field name="arch" type="xml">
+            <tree string="Job Orders">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date"/>
+                <field name="invoice_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_job_order" model="ir.actions.act_window">
+        <field name="name">Job Orders</field>
+        <field name="res_model">job.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_job_order" name="Job Orders" parent="account.menu_finance" action="action_job_order" sequence="20"/>
+</odoo>
